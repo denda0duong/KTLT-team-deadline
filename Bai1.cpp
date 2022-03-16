@@ -50,12 +50,12 @@ void xuatDanhSach(Covid19* danhSach, int n) {
 }
 
 void nhapMuiTiem(MuiTiem* k) {
-    cout << "Nhap so thu tu mui tiem:";
+    cout << "Nhap so thu tu mui tiem: ";
     cin >> k->stt;
-    cout << "Nhap ten vaccine:";
+    cout << "Nhap ten vaccine: ";
     cin.ignore();
     getline(cin, k->loai);
-    cout << "Nhap ngay tiem (vd: 11 11 2021):";
+    cout << "Nhap ngay tiem (vd: 11 11 2021): ";
     cin >> k->ngayTiem.ngay >> k->ngayTiem.thang >> k->ngayTiem.nam;
     cout << "Nhap dia chi duoc tiem: ";
     cin >> k->noiTiem;
@@ -84,10 +84,33 @@ void nhapDanhSach(Covid19*& danhSach, int n) {
     }
 }
 
-//void themPhanTu(Covid19*& danhSach, int n) {
-//    nhapThongTin(danhSach + n);
-//    n++;
-//}
+void themPhanTu(Covid19*& danhSach, int n) {
+    int k;
+    Covid19* ak = new Covid19[1];
+
+    cout << "Nhap vi tri can them: ";
+    cin >> k; 
+    k--;
+    cout << "Dien thong tin cua nguoi duoc them." << endl;
+    nhapThongTin(ak + 0);
+
+    //copy tu dau den danhSach[k-1]
+    n++;
+    Covid19* danhSach02 = new Covid19[n + 20];
+    for (int i = 0; i < k; i++) {
+        danhSach02[i] = danhSach[i];
+    }
+    danhSach02[k] = ak[0];
+    for (int i = k + 1; i < n + 1; i++) {
+        danhSach02[i] = danhSach[i - 1];
+    }
+    //cap phat dong lai
+    delete[] danhSach;
+    danhSach = new Covid19[n + 20];
+    for (int i = 0; i < n; i++) {
+        danhSach[i] = danhSach02[i];
+    }
+}
 
 void suaThongTin(Covid19*& k, string id, int n) {
     int found = 0;
@@ -143,6 +166,7 @@ void xacDinhChuaTiemKMui(Covid19* k, int K, int n) {
         if (k[i].soMui < K) {
             found++;
             xuatCaNhan(k + i);
+            cout << "\n-----\n";
         }
     }
     if (found == 0) {
@@ -167,22 +191,32 @@ int main() {
     cout << "**  7. Xac dinh nhung nguoi chua tiem du K mui.      **\n";
     cout << "**  0. Thoat.                                        **\n";
     cout << "*******************************************************\n";
+
     do {
-        cout << "Nhap tuy chon: ";
+        cout << "\nNhap tuy chon: ";
         cin >> key;
         switch (key) {
         case 1:
             cout << "\n1. Nhap so phan tu can them vao danh sach: ";
             cin >> n;
+            soluongSV = n;
             nhapDanhSach(danhSach, n);
             cout << "\nThem thanh cong!" << endl;
-            soluongSV = n;
             break;
-            /* case 2:
-                 cout << "\n7. Dien thong tin phan tu duoc them vao.\n";
-                 themPhanTu(danhSach, soluongSV);
-                 cout << "Them thanh cong!" << endl;
-                 break;*/
+        case 2:
+            cout << "\n2. Them 1 phan tu.\n";
+            if (soluongSV>0) {
+                
+                themPhanTu(danhSach, soluongSV);
+                cout << "\nThem thanh cong!" << endl;
+                soluongSV++;
+            }
+            else {
+                nhapDanhSach(danhSach, 1);
+                cout << "\nThem thanh cong!" << endl;
+                soluongSV++;
+            }
+            break;
         case 3:
             if (soluongSV > 0) {
                 string id;
@@ -210,7 +244,7 @@ int main() {
             break;
         case 5:
             if (soluongSV > 0) {
-                cout << "\n5. Sap xep danh sach theo CMND/CCCD.";
+                cout << "\n5. Sap xep danh sach theo CMND/CCCD.\n";
                 sapXepTheoCMND(danhSach, soluongSV);
                 xuatDanhSach(danhSach, soluongSV);
             }
@@ -221,7 +255,7 @@ int main() {
         case 6:
             if (soluongSV > 0) {
                 cout << "\n6. Xuat danh sach.\n";
-                xuatDanhSach(danhSach, n);
+                xuatDanhSach(danhSach, soluongSV);
             }
             else {
                 cout << "\nDanh sach trong!";
