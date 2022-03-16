@@ -80,7 +80,7 @@ void nhapThongTin(Covid19* k) {
 void nhapDanhSach(Covid19*& danhSach, int n) {
     danhSach = new Covid19[n + 20];
     for (int i = 0; i < n; i++) {
-        nhapThongTin(danhSach);
+        nhapThongTin(danhSach + i);
     }
 }
 
@@ -186,7 +186,7 @@ int main() {
         case 3:
             if (soluongSV > 0) {
                 string id;
-                cout << "\n2. Nhap CMND/CCCD cua nguoi can duoc chinh sua: ";
+                cout << "\n3. Nhap CMND/CCCD cua nguoi can duoc chinh sua: ";
                 cin >> id;
                 suaThongTin(danhSach, id, soluongSV);
             }
@@ -197,7 +197,7 @@ int main() {
         case 4:
             if (soluongSV > 0) {
                 string id;
-                cout << "\n3. Nhap CMND/CCCD cua nguoi can bi xoa: ";
+                cout << "\n4. Nhap CMND/CCCD cua nguoi can bi xoa: ";
                 cin >> id;
                 if (xoaTheoCCCD(danhSach, id, soluongSV) == 1) {
                     cout << "\nNguoi co CMND/CCCD = " << id << " da bi xoa." << endl;
@@ -210,7 +210,7 @@ int main() {
             break;
         case 5:
             if (soluongSV > 0) {
-                cout << "\n4. Sap xep danh sach theo CMND/CCCD.";
+                cout << "\n5. Sap xep danh sach theo CMND/CCCD.";
                 sapXepTheoCMND(danhSach, soluongSV);
                 xuatDanhSach(danhSach, soluongSV);
             }
@@ -220,7 +220,7 @@ int main() {
             break;
         case 6:
             if (soluongSV > 0) {
-                cout << "\n5. Xuat danh sach.";
+                cout << "\n6. Xuat danh sach.\n";
                 xuatDanhSach(danhSach, n);
             }
             else {
@@ -230,7 +230,7 @@ int main() {
         case 7:
             if (soluongSV > 0) {
                 int K;
-                cout << "\n6. Nhap so mui yeu cau: ";
+                cout << "\n7. Nhap so mui yeu cau: ";
                 cin >> K;
                 cout << "Nhung nguoi chua tiem du " << K << " mui la:\n";
                 xacDinhChuaTiemKMui(danhSach, K, soluongSV);
@@ -238,6 +238,7 @@ int main() {
             else {
                 cout << "Danh sach trong!";
             }
+            break;
         case 0:
             cout << "\nBan da chon thoat chuong trinh!";
             break;
