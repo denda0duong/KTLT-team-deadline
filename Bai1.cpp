@@ -285,7 +285,7 @@ int main() {
 
     delete[] danhSach;
 
-    cout << "\nthe end\n";
+    cout << "\nthe end.\n";
 
     return 0;
 }
