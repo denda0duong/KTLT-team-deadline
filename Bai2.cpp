@@ -187,7 +187,6 @@ int main () {
 
 	} while (key != 0);
 
-
 	delete[] danhSach;
 
 	return 0;
