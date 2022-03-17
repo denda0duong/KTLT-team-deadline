@@ -89,7 +89,7 @@ void themPhanTu(Covid19*& danhSach, int n) {
     Covid19* ak = new Covid19[1];
 
     cout << "Nhap vi tri can them: ";
-    cin >> k; 
+    cin >> k;
     k--;
     cout << "Dien thong tin cua nguoi duoc them." << endl;
     nhapThongTin(ak + 0);
@@ -205,8 +205,8 @@ int main() {
             break;
         case 2:
             cout << "\n2. Them 1 phan tu.\n";
-            if (soluongSV>0) {
-                
+            if (soluongSV > 0) {
+
                 themPhanTu(danhSach, soluongSV);
                 cout << "\nThem thanh cong!" << endl;
                 soluongSV++;
@@ -284,6 +284,8 @@ int main() {
     } while (key != 0);
 
     delete[] danhSach;
+
+    cout << "\nthe end\n";
 
     return 0;
 }
