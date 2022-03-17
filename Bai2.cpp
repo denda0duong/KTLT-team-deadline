@@ -9,7 +9,6 @@ struct Ngay {
 	int ngay, thang, nam;
 };
 
-
 struct F0 {
 	string maSo;
 	string ten;
